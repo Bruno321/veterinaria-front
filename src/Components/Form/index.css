@@ -1,0 +1,12 @@
+.form{
+    margin-top: 50px;
+}
+.form-title{
+    background-color: #EDEDED;
+    font-size: 2em;
+    padding: 10px;
+}
+.form-iputs-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}

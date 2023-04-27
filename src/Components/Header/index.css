@@ -1,0 +1,61 @@
+.header-container{
+    width: 100%;
+    height: 7vh;
+    background-color: #218C74;
+}
+.header{
+    padding: 5px;
+    display: flex;
+}
+.header>h3{
+    font-size: 2.5em;
+    flex: 3;
+    margin-left: 10px;
+}
+.header-logo-container{
+    flex:1;
+    display: flex;
+    justify-content: space-evenly;
+}
+.header-logo-container>img{
+    cursor: pointer;
+}
+.header>p{
+    font-size: 1.3em;
+    /* flex: 1.5; */
+    text-align: center;
+    align-self: center;
+}
+.underlineText{
+    text-decoration: underline #003070;
+    text-underline-offset: 8px;
+    cursor: pointer;
+    align-self: center;
+    color: white;
+}
+.headerText {
+    position: relative;
+    transition: all 0.15s ease-out;
+    color: white;
+    align-self: center;
+    cursor: pointer;
+  }
+  .headerText:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -5px;
+    left: 0;
+    background-color: #003070;
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.5s cubic-bezier(1, 0.25, 0, 0.75) 0s;
+    transition: all 0.5s cubic-bezier(1, 0.25, 0, 0.75) 0s;
+  }
+  .headerText:hover:before {
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }

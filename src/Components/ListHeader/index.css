@@ -1,0 +1,12 @@
+.listHeader{
+    margin-top: 20px;
+}
+.listHeader-container{
+    display: flex;
+    /* justify-content: space-around; */
+    font-size: 1.5em;
+}
+.listHeader-container>p{
+    flex:1;
+    text-align: center;
+}

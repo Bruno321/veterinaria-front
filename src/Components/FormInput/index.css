@@ -1,0 +1,13 @@
+.formInput{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-top: 20px;
+}
+.formInput>input{
+    font-size: 1em;
+    padding: 5px;
+    margin-top: 10px;
+}
