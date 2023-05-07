@@ -1,23 +1,28 @@
 import React,{ createContext, useState } from "react";
 import Cookies from "universal-cookie";
-const cookies = new Cookies();
 
 export const LoginContext = createContext()
 const Provider = ({children})=> {
     const [isAuth,setIsAuth] = useState(()=>{
-        return cookies.get('token')
+        return localStorage.getItem('token')
     })
-
+    const [sesionType,setSesionType] = useState(()=>{
+        return localStorage.getItem('sesionType')
+    })
     const value = {
         isAuth,
-        login:(token)=>{
+        sesionType,
+        login:(token,st)=>{
             setIsAuth(true)
-            cookies.set('token', token, { path: '/' });
+            setSesionType(st)
+            localStorage.setItem('token',token);
+            localStorage.setItem('sesionType',st)
             location.reload();
         },
         logOut:()=>{
             setIsAuth(false)
-            cookies.remove('token');
+            localStorage.removeItem('token');
+            localStorage.removeItem('sesionType');
             location.reload();
         },
     }

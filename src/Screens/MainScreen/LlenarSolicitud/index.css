@@ -1,0 +1,24 @@
+.topForm-container{
+    background-color: white;
+    display: flex;
+    padding: 15px;
+    width: 30vw;
+    justify-content: center;
+}
+.horizontal-container{
+    display: flex;
+    flex-direction: column;
+}
+.horizontal-container>p{
+    width: 5vw;
+    padding: 5px;
+    display: flex;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    height: 100%;
+}
+.horizontal-container>input{
+    height: 3vh;
+    width: 20vw;
+    padding: 5px;
+}

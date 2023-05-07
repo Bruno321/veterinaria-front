@@ -1,6 +1,8 @@
 import React from "react"
 import './index.css'
 import filtro from '../../../Assets/Icons/filtro.svg'
+import iconPDF from '../../../Assets/Icons/pdf_clickeable.svg'
+import iconNoEdit from '../../../Assets/Icons/pdf_no_clickeable.svg'
 
 const dummy_data = [
     {
@@ -9,15 +11,17 @@ const dummy_data = [
         expediente:"HMC-2092-912",
         nombre:"yumiko",
         estatus:0,
-        pdfLink:'badac-231231-asd'
+        pdfLink:'badac-231231-asd',
+        fecha:'6 de marzo de 2023'
     },
     {
         id:1,
         examen:"Hermatologia",
         expediente:"HMC-2092-912",
         nombre:"yumiko",
-        estatus:0,
-        pdfLink:'badac-231231-asd'
+        estatus:1,
+        pdfLink:'badac-231231-asd',
+        fecha:'6 de marzo de 2023'
     },
     {
         id:2,
@@ -25,7 +29,8 @@ const dummy_data = [
         expediente:"HMC-2092-912",
         nombre:"yumiko",
         estatus:0,
-        pdfLink:'badac-231231-asd'
+        pdfLink:'badac-231231-asd',
+        fecha:'6 de marzo de 2023'
     },
 ]
 
@@ -64,18 +69,28 @@ export const SeguimientoExamenes = () => {
                 <div className="divisor"></div>
                 <p>Estatus</p>
                 <div className="divisor"></div>
-                <p>PDF</p>
+                <p>Descargar PDF</p>
             </div>
 
             <div className="seguimientoList">
-                <div className="seguimientoList-element">
-                    <p>Hermatologia</p>
-                    <p>MC-209-12</p>
-                    <p>Yumiko</p>
-                    <p>27 de abril del 2023</p>
-                    <p>pendiente</p>
-                    <p>pdf</p>
-                </div>
+                {dummy_data.map((element,index)=>{
+                    return (
+                        <div key={index} className="seguimientoList-element">
+                            <p>{element.examen}</p>
+                            <p>{element.expediente}</p>
+                            <p>{element.nombre}</p>
+                            <p>{element.fecha}</p>
+                            <p>{element.estatus==0 ? 'Completado' : 'Pendiente'}</p>
+                            <img  style={
+                                        element.estatus==0 ?
+                                        {cursor:'pointer'} :
+                                        null
+                                    } 
+                                src={ element.estatus==0 ? iconPDF :  iconNoEdit} 
+                            />
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )

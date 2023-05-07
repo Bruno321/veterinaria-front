@@ -17,7 +17,7 @@ export const Login = () => {
     })
 
     const handleClick = async () => {
-        login("response.data.token")
+        login("response.data.token",1)
 
     }
     return (

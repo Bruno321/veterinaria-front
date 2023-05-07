@@ -26,6 +26,12 @@
     text-align: center;
     align-self: center;
 }
+.general-text{
+    cursor: pointer;
+    align-self: center;
+    color: white;
+}
+
 .underlineText{
     text-decoration: underline #003070;
     text-underline-offset: 8px;

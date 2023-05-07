@@ -3,7 +3,7 @@ import React, {createContext, useState} from "react";
 export const NavigationContext = createContext();
 
 const Provider = ({children})=>{
-    const [screen, setScreen] = useState(1);
+    const [screen, setScreen] = useState(null);
     const [itemId,setItemId] = useState()
     const [examenType,setExamenType] = useState()
     return(

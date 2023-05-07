@@ -1,6 +1,7 @@
 .seguimientoContainer {
     padding:3vw;
     background-color:#EEEEEE;
+    height: 80vh;
 }
 .seguimientoList-header{
     display: flex;
@@ -21,6 +22,29 @@
     background-color: white;
     margin-top: 20px;
     height: 60vh;
+}
+.seguimientoList-element{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.seguimientoList-element>div{
+    height: 50px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex:1;
+    background-color: #218C74;
+    cursor: pointer;
+}
+.seguimientoList-element>p{
+    flex:1;
+}
+.seguimientoList-element>img{
+    width: 50px;
+    height: 50px;
+    flex:1;
 }
 .buscador-input{
     background: url('../../../Assets/Icons/search.svg') no-repeat scroll 5px 5px;
@@ -56,5 +80,5 @@
     border-bottom: 1px solid gray;
     width: 90%;
     outline: none;
-    color: gray;
+    background-color: transparent;
 }

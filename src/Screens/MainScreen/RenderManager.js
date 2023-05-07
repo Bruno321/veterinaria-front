@@ -11,8 +11,8 @@ export const RenderManager = ({screen}) => {
     const handleRender = [
         <SolicitarExamen/>,
         <SeguimientoExamenes/>,
-        <LlenarSolicitud/>,
         <Solicitudes/>,
+        <LlenarSolicitud/>,
     ]
 
     return (
