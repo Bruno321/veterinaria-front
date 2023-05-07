@@ -1,29 +1,28 @@
-import React,{useContext} from "react"
+import React,{useContext,useEffect,useState} from "react"
 import './index.css'
 import { NavigationContext } from "../../../Context/NavigationContext"
+import {FormGeneral} from '../../../Components/Examenes/FormGeneral'
+import { Hemograma } from "../../../Components/Examenes/Hemograma"
+import { Parasitologia } from "../../../Components/Examenes/Parasitologia"
+import { UriAnalisis } from "../../../Components/Examenes/UriAnalisis"
 
 export const LlenarSolicitud = () => {
     
+    const examenes = [
+        <Hemograma/>,
+        <Parasitologia/>,
+        <UriAnalisis/>
+    ]
     return (
         <div className="seguimientoContainer">
             <h2>Resultados nombreExamen</h2>
-
-            <div className="topForm-container">
-                <div className="horizontal-container">
-                    <p>Caso:</p>
-                    <p>Propietario:</p>
-                    <p>Dirección:</p>
-                    <p>Teléfono:</p>
-                </div>
-                {/* TODO si ya existe el propietario se puede autocompletar */}
-                <div className="horizontal-container">
-                    <input placeholder="Ingrese la dirección del propietario"/>
-                    <input placeholder="Ingrese el nombre del propietario"/>
-                    <input placeholder="Ingrese la dirección del propietario"/>
-                    <input placeholder="Ingrese el teléfono del propietario"/>
+            <FormGeneral/>
+            {examenes[2]}
+            <div className="btn-container">
+                <div className="upload-button">
+                    Subir resultados
                 </div>
             </div>
-
         </div>
     )
-}
+}   

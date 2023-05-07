@@ -1,0 +1,9 @@
+.left{
+    border-left: 1px solid;
+}
+.right{
+    border-right: 1px solid;
+}
+.evenly-container>*{
+    flex:1;
+}

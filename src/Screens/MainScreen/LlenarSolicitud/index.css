@@ -1,24 +1,14 @@
-.topForm-container{
-    background-color: white;
+.upload-button{
+    width: 20%;
+    background-color: #218C74;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+.btn-container{
+    width: 100%;
     display: flex;
-    padding: 15px;
-    width: 30vw;
     justify-content: center;
-}
-.horizontal-container{
-    display: flex;
-    flex-direction: column;
-}
-.horizontal-container>p{
-    width: 5vw;
-    padding: 5px;
-    display: flex;
-    border-right: 1px solid;
-    border-bottom: 1px solid;
-    height: 100%;
-}
-.horizontal-container>input{
-    height: 3vh;
-    width: 20vw;
-    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 50px;
 }

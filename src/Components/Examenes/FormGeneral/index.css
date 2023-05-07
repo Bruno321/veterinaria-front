@@ -1,0 +1,41 @@
+.topForm-container{
+    background-color: white;
+    display: flex;
+    padding: 15px;
+    /* width: 30vw; */
+    justify-content: center;
+}
+.topForm-container>div{
+    display: flex;
+}
+.horizontal-container{
+    display: flex;
+    flex-direction: column;
+}
+.horizontal-container>p{
+    padding: 5px;
+    display: flex;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    height: 100%;
+}
+.horizontal-container>select{
+    flex:1;
+    padding: 5px;
+    background-color: transparent;
+    border: 1px solid;
+}
+.horizontal-container>input{
+    flex: 1;
+    padding: 5px;
+}
+.large-input{
+    width: 20vw;
+}
+.second-container{
+    display:flex;
+    padding: 15px;
+    background-color:white;
+    margin-top:20px;
+    justify-content:center;
+}

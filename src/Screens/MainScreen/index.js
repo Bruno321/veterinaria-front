@@ -16,7 +16,7 @@ export const MainScreen = () => {
         if(sesionType == 0 ){
              setScreen(0)
         } else {
-            setScreen(2)
+            setScreen(3)
         }
     },[])
 
