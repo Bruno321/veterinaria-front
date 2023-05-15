@@ -1,29 +1,97 @@
 import React from "react"
 import './index.css'
 import Swal from "sweetalert2"
+import { SAVE,process } from "../../../Services/Api"
 
 export const ExamenCard = ({data}) => {
-    const handleClick = () => {
-        Swal.fire(`¿Seguro que desea solicitar el ${data.titulo}`,'','question')
+
+    const handleClick =  (id) => {
+
         Swal.fire({
-            title:`¿Seguro que desea solicitar el ${data.titulo}`,
-            icon:'question',
+            // Que significara NR
+            title:`Formulario para el examen de ${data.nombre}`,
             showCancelButton:true,
             confirmButtonColor:'green',
-            confirmButtonText:'Si, solicitar',
-            cancelButtonText:'Cancelar'
+            confirmButtonText:'Solicitar',
+            cancelButtonText:'Cancelar',
+            html:
+            `
+            <div id="form">
+                <div>
+                    <label>Nombre de la mascota:</label>
+                    <input id="nombre" placeholder="Nombre"/>
+                </div>
+                <div>
+                    <label>Raza:</label>
+                    <input id="raza" placeholder="Raza"/>
+                </div>
+                <div>
+                    <label>Edad:</label>
+                    <input id="edad" placeholder="Edad"/>
+                </div>
+                <div>
+                    <div>
+                        <label>¿Esta castrado?</label>
+                        <input id="castrado" type="checkbox"/>
+                    </div>
+                    <div>
+                        <label>Sexo: </label>
+                        <div>
+                            <label>Macho</label>
+                            <input id="sexo" type="checkbox"/>
+                        </div>
+                        <div>
+                            <label>Hembra</label>
+                            <input type="checkbox"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `
         })
-        .then(result=>{
-            if(result.isConfirmed){
-                Swal.fire('Examen solicitado correctamente', '', 'success')
+        .then(async ({isConfirmed})=>{
+            if(isConfirmed){
+                const nombreAnimal = document.getElementById("nombre").value
+                const razaAnimal = document.getElementById("raza").value
+                const edadAnimal = document.getElementById("edad").value
+                const estaCastradoSelect = document.getElementById("castrado").checked
+                const sexoSelect = document.getElementById("sexo").checked
+                console.log(estaCastrado,sexo)
+                let estaCastrado = 0
+                let sexo = 0
+                if(estaCastradoSelect){
+                    estaCastrado = 1
+                }
+                if(sexoSelect){
+                    estaCastrado = 1
+                }
+                const data = {
+                    solicitudData:{
+                        exameneId:id
+                    },
+                    examenData:{
+                        nombreAnimal,
+                        razaAnimal,
+                        edadAnimal,
+                        estaCastrado,
+                        sexo,
+                    }
+                }
+                try {
+                    const response = await process(SAVE,'examenes/solicitud',data)
+                    Swal.fire('Exito', response.data, 'success')
+                } catch(e){
+                    console.log(e.response)
+                    Swal.fire('Error', '', 'error')
+                }
             }
         })
     }
     return (
         <div className="examenCard-container">
             <img src={data.img}/>
-            <h1>{data.titulo}</h1>
-            <button onClick={handleClick}>Solicitar examén</button>
+            <h1>{data.nombre}</h1>
+            <button onClick={()=>handleClick(data.id)}>Solicitar examén</button>
         </div>
     )
 }

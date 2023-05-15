@@ -6,19 +6,40 @@ import { loginApi } from '../../Services/Api'
 
 import './index.css'
 
-const url = 'http://localhost:8080/api/users/login';
-
 export const Login = () => {
 
     const {login} = useContext(LoginContext)
     const [form,setForm] = useState({
-        user:"",
-        password:""
+        correo:"",
+        contrasenia:"",
+        tipo:0,
     })
 
     const handleClick = async () => {
-        login("response.data.token",1)
+        try {
+            const response = await loginApi(form)
+            login(response.data.token,form.tipo)
 
+        } catch (e){
+            console.log(e)
+            Swal.fire({
+                icon:'error',
+                title:'Error',
+                text:e.response.data.message
+            })
+        }
+
+    }
+
+    const handleCheckBox = () => {
+        switch(form.tipo){
+            case 0:
+                setForm({...form,tipo:1})
+                break;
+            case 1:
+                setForm({...form,tipo:0})
+                break;
+        }
     }
     return (
         <div className="login">
@@ -35,12 +56,18 @@ export const Login = () => {
                         placeholder="Usuario" 
                         type="text" 
                         value={form.user} 
-                        onChange={(e)=>setForm({...form,user:e.target.value})}/>
+                        onChange={(e)=>setForm({...form,correo:e.target.value})}/>
                     <input 
                         placeholder="Contraseña"
                         type="password" 
                         value={form.password} 
-                        onChange={(e)=>setForm({...form,password:e.target.value})}/>
+                        onChange={(e)=>setForm({...form,contrasenia:e.target.value})}/>
+                    <label>Soy veterinario</label>
+                    <input
+                        type='checkbox'
+                        checked={form.tipo==1 ? true : false }
+                        onChange={handleCheckBox}
+                    />
                 </div>
 
                 <div className="login-input button" onClick={handleClick}>

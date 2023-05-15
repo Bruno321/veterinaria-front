@@ -14,9 +14,9 @@ export const MainScreen = () => {
 
     useEffect(()=>{
         if(sesionType == 0 ){
-             setScreen(0)
+             setScreen(2)
         } else {
-            setScreen(3)
+            setScreen(2)
         }
     },[])
 

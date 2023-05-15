@@ -24,3 +24,21 @@
 .examenCard-container>h1{
     text-align: center;
 }
+
+#form>div>*{
+    width:50%;
+}
+#form>div{
+    display: flex;
+}
+#form>div>label{
+    text-align: left;
+}
+#form>div>:last-child{
+    display: flex;
+    justify-content: space-between;
+}
+#form>:last-child>:first-child{
+    width: 45%;
+    
+}

@@ -1,5 +1,4 @@
 import React,{ createContext, useState } from "react";
-import Cookies from "universal-cookie";
 
 export const LoginContext = createContext()
 const Provider = ({children})=> {

@@ -2,38 +2,12 @@ import React,{useContext} from "react"
 import iconPDF from '../../../Assets/Icons/pdf_clickeable.svg'
 import filtro from '../../../Assets/Icons/filtro.svg'
 import { NavigationContext } from "../../../Context/NavigationContext"
+import { useFetchData } from "../../../Hooks/fetchHook"
 
-const dummy_data = [
-    {
-        id:0,
-        examen:"Hermatologia",
-        expediente:"HMC-2092-912",
-        propietario:"Bruno Ivan Paz Martinez",
-        estatus:0,
-        pdfLink:'badac-231231-asd',
-        fecha:'6 de marzo de 2023',
-    },
-    {
-        id:1,
-        examen:"Hermatologia",
-        expediente:"HMC-2092-912",
-        propietario:"Josue Ramirez",
-        estatus:1,
-        pdfLink:'badac-231231-asd',
-        fecha:'6 de marzo de 2023',
-    },
-    {
-        id:2,
-        examen:"Hermatologia",
-        expediente:"HMC-2092-912",
-        propietario:"Aldair Cruz Mateo",
-        estatus:0,
-        pdfLink:'badac-231231-asd',
-        fecha:'6 de marzo de 2023',
-    },
-]
+
 export const Solicitudes = () => {
     const {setScreen,setItemId} = useContext(NavigationContext)
+    const [data, loading] = useFetchData('examenes/solicitud');
 
     const handleClick = (id) => {
         setItemId(id)
@@ -71,15 +45,16 @@ export const Solicitudes = () => {
             </div>
 
             <div className="seguimientoList">
-                {dummy_data.map((element,index)=>{
+                {data.map((element,index)=>{
+                    // 0 pendeinte, 1 completado
                     return (
                         <div key={index} className="seguimientoList-element">
-                            <p>{element.propietario}</p>
-                            <p>{element.examen}</p>
-                            <p>{element.expediente}</p>
-                            <p>{element.fecha}</p>
-                            <p>{element.estatus==0 ? 'Completado' : 'Pendiente'}</p>
-                            {element.estatus==1 ? 
+                            <p>{element.usuario.nombres} {element.usuario.apellidos}</p>
+                            <p>{element.examene.nombre}</p>
+                            <p>{element.examen.caso}</p>
+                            <p>{element.fechaCreacion}</p>
+                            <p>{element.pendiente==0 ? 'Pendiente' : 'Completado'}</p>
+                            {element.pendiente==0 ? 
                                 <div onClick={()=>handleClick(element.id)}>
                                     Llenar expediente
                                 </div>

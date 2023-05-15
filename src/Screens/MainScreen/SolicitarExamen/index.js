@@ -1,41 +1,20 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import {ExamenCard} from '../../../Components/Cards/ExamenCard'
 import './index.css'
+import { useFetchData } from "../../../Hooks/fetchHook"
 
 export const SolicitarExamen = () => {
-    const dummy = [
-        {
-            img: require('../../../Assets/Imgs/perro.svg'),
-            titulo: "Examen de hermatología",
-        },
-        {
-            img: require('../../../Assets/Imgs/caballos.svg'),
-            titulo: "Examen de pariitología",
-        },
-        {
-            img: require('../../../Assets/Imgs/gato.svg'),
-            titulo: "Examen de urianálisis",
-        },
-        {
-            img: require('../../../Assets/Imgs/gato.svg'),
-            titulo: "Examen de urianálisis"
-        },
-        {
-            img: require('../../../Assets/Imgs/gato.svg'),
-            titulo: "Examen de urianálisis"
-        },
-        {
-            img: require('../../../Assets/Imgs/gato.svg'),
-            titulo: "Examen de urianálisis"
-        },
-    ]
+
+    const [data, loading] = useFetchData('examenes');
+
+    
     return (
         <div>
             <div className="solicitarExamen-gridContainer">
                 <div className="solicitarExamen-grid">
-                    {dummy.map(e=> {
+                    {data.map((e,i)=> {
                         return (
-                            <ExamenCard data={e}/>
+                            <ExamenCard key={i} data={e}/>
                         )
                     })}
                 </div>

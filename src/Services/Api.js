@@ -1,7 +1,6 @@
 import axios from 'axios';
 import Cookies from "universal-cookie";
 
-const cookies = new Cookies();
 
 export const GET = 'GET';
 export const FIND = 'FIND';
@@ -12,12 +11,12 @@ export const SAVE_WITH_FILE = 'SAVE_WITH_FILE';
 
 export const BASEPATH = '/api';
 
-const LOGINPATH = `${BASEPATH}/users/login`;
+const LOGINPATH = `${BASEPATH}/auth`;
 
-export const token = cookies.get('token')
+export const token = localStorage.getItem('token')
 
 const API = axios.create({
-  baseURL: 'http://localhost:8080', // TODO: Change this later for .env variable
+  baseURL: 'http://localhost:3000', // TODO: Change this later for .env variable
   headers: { 
     "Content-Type":"application/json",
     "Accept":"*/*",
@@ -38,7 +37,6 @@ export async function loginApi (form) {
  */
 export async function process(operation, model, payload = {}, params = {}) {
   const { id, queries, limit, skip } = params || {};
-
   const oAuth = {
     headers: {
       Authorization: `${token}`,
