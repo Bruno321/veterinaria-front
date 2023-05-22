@@ -6,19 +6,33 @@
 .header{
     padding: 5px;
     display: flex;
+
 }
-.header>h3{
-    font-size: 2.5em;
-    flex: 3;
-    margin-left: 10px;
+.section-logo{
+    width: 30%;
 }
 .header-logo-container{
+
     flex:1;
     display: flex;
     justify-content: space-evenly;
-}
-.header-logo-container>img{
     cursor: pointer;
+    border-color: #fff;
+    /* background-color: red; */
+    width: 100px !important;
+    border: #fff 2px solid;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+.examn-btn{
+    /* background-color: purple !important; */
+    width: 12rem;
+}
+
+.logo-vetapp-img{
+    height: 50px;
+    width: 125px;
 }
 .header>p{
     font-size: 1.3em;
@@ -64,4 +78,9 @@
     visibility: visible;
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
+  }
+
+  .userName{
+    margin: 0px 30px 0px 30px;
+    color: white;
   }
