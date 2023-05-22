@@ -74,12 +74,15 @@ export const Login = () => {
             value={form.password}
             onChange={(e) => setForm({ ...form, contrasenia: e.target.value })}
           />
-          <label>Soy veterinario</label>
-          <input
-            type="checkbox"
-            checked={form.tipo == 1 ? true : false}
-            onChange={handleCheckBox}
-          />
+          <label>
+            Soy veterinario
+            <input
+              className="checkbox-isVet"
+              type="checkbox"
+              checked={form.tipo == 1 ? true : false}
+              onChange={handleCheckBox}
+            />
+          </label>
         </section>
 
         <button className="login-input button" onClick={handleClick}>
