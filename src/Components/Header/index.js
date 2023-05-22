@@ -31,12 +31,14 @@ export const Header = () => {
         </section>
         {sesionType == 0 ? (
           <>
-            <div className="header-logo-container examn-btn">
+            <div
+              className="header-logo-container examn-btn"
+              onClick={() => setScreen(0)}
+            >
               <FontAwesomeIcon
                 icon={faFileLines}
                 size="2xl"
                 style={{ color: "#ffffff" }}
-                onClick={() => setScreen(0)}
                 alt={"Icono para solicitar examen"}
               />
               <p
@@ -46,12 +48,11 @@ export const Header = () => {
                 Solicitar examen
               </p>
             </div>
-            <div className="header-logo-container">
+            <div className="header-logo-container" onClick={() => setScreen(1)}>
               <FontAwesomeIcon
                 icon={faListCheck}
                 size="2xl"
                 style={{ color: "#ffffff" }}
-                onClick={() => setScreen(0)}
                 alt={"Icono para hacer seguimiento de examen"}
               />
               <p
@@ -64,17 +65,14 @@ export const Header = () => {
           </>
         ) : null}
 
-        <div className="header-logo-container">
+        <div className="header-logo-container" onClick={logOut}>
           <FontAwesomeIcon
             icon={faArrowRightFromBracket}
             size="2xl"
             style={{ color: "#ffffff" }}
-            onClick={() => setScreen(0)}
             alt={"Icono para salir de sesión"}
           />
-          <p onClick={logOut} className={"headerText"}>
-            Cerrar sesión
-          </p>
+          <p className={"headerText"}>Cerrar sesión</p>
         </div>
         <p className="userName">Jorge Josue Alvarez Martinez</p>
         {/* <DropMenu/> */}

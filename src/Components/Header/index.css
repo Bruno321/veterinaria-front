@@ -47,7 +47,7 @@
 }
 
 .underlineText{
-    text-decoration: underline #003070;
+    text-decoration: underline #eee;
     text-underline-offset: 8px;
     cursor: pointer;
     align-self: center;
@@ -67,7 +67,7 @@
     height: 1px;
     bottom: -5px;
     left: 0;
-    background-color: #003070;
+    background-color: #eee;
     visibility: hidden;
     -webkit-transform: scaleX(0);
     transform: scaleX(0);
