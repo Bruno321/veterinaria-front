@@ -47,18 +47,18 @@
     flex:1;
 }
 .buscador-input{
-    background: url('../../../Assets/Icons/search.svg') no-repeat scroll 5px 5px;
-    background-size: 50px;
+    background: url('../../../Assets/Icons/search.svg') no-repeat scroll 8px 7px;
+    background-size: 30px;
     padding-left: 70px;
     border: 0;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     outline: none;
     width: 70%;
 }
 .buscador{
     background-color: white;
     display: flex;
-    height: 6vh;
+    height: 7vh;
     color: gray;
 }
 .buscador-filtro{
@@ -75,10 +75,14 @@
     justify-content: center;
 }
 .select-buscador>select{
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     border: 0;
     border-bottom: 1px solid gray;
     width: 90%;
     outline: none;
     background-color: transparent;
+}
+
+.img-pdf{
+    width: 250px;
 }

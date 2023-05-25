@@ -14,6 +14,7 @@ import {
 import "./index.css";
 
 import VetAppLogo from "../../Assets/Imgs/VetApp-Logo-Blanco.png";
+import VetAppNegro from "../../Assets/Imgs/VetApp-Logo-Negro.png";
 
 export const Header = () => {
   const { screen, setScreen } = useContext(NavigationContext);
@@ -38,7 +39,7 @@ export const Header = () => {
               <FontAwesomeIcon
                 icon={faFileLines}
                 size="2xl"
-                style={{ color: "#ffffff" }}
+                style={{ color: "#fff" }}
                 alt={"Icono para solicitar examen"}
               />
               <p
@@ -52,7 +53,7 @@ export const Header = () => {
               <FontAwesomeIcon
                 icon={faListCheck}
                 size="2xl"
-                style={{ color: "#ffffff" }}
+                style={{ color: "#fff" }}
                 alt={"Icono para hacer seguimiento de examen"}
               />
               <p
@@ -69,13 +70,12 @@ export const Header = () => {
           <FontAwesomeIcon
             icon={faArrowRightFromBracket}
             size="2xl"
-            style={{ color: "#ffffff" }}
+            style={{ color: "#fff" }}
             alt={"Icono para salir de sesión"}
           />
           <p className={"headerText"}>Cerrar sesión</p>
         </div>
         <p className="userName">Jorge Josue Alvarez Martinez</p>
-        {/* <DropMenu/> */}
       </section>
     </header>
   );
