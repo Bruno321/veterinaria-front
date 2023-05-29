@@ -34,7 +34,7 @@ export const LlenarSolicitud = () => {
         <div className="seguimientoContainer">
             {loading ? <>Loading</>: 
                 <>
-                    <h2>Resultados nombreExamen</h2>
+                    <h2 className="h2-Resultados">Resultados:</h2>
             <FormGeneral data={informacionGeneral} setInformacionGeneral={setInformacionGeneral}/>
             {examenes[informacionGeneral.examenId]}
             <div className="btn-container">

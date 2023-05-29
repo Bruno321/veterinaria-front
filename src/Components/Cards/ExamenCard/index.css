@@ -1,6 +1,6 @@
 .examenCard-container{
-    width: 30vh;
-    height: 44vh;
+    width: 35vh;
+    height: 50vh;
     background-color: #2C3E50;
     border-radius: 20px;
     padding: 10px;
@@ -41,4 +41,8 @@
 #form>:last-child>:first-child{
     width: 45%;
     
+}
+
+.title-card-name{
+    font-size: 25px;
 }

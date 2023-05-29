@@ -2,6 +2,7 @@ import React from "react"
 import './index.css'
 import Swal from "sweetalert2"
 import { SAVE,process } from "../../../Services/Api"
+import imgCard from "../../../Assets/Imgs/pet-care.svg";
 
 export const ExamenCard = ({data}) => {
 
@@ -89,9 +90,9 @@ export const ExamenCard = ({data}) => {
     }
     return (
         <div className="examenCard-container">
-            <img src={data.img}/>
-            <h1>{data.nombre}</h1>
-            <button onClick={()=>handleClick(data.id)}>Solicitar examén</button>
+            <img src={imgCard}/>
+            <h1 className = "title-card-name">{data.nombre}</h1>
+            <button onClick={()=>handleClick(data.id)}>SOLICITAR EXAMEN</button>
         </div>
     )
 }
