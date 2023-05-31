@@ -40,7 +40,7 @@ export const SeguimientoExamenes = () => {
         {data.map((element, index) => {
           return (
             <div key={index} className="seguimientoList-element">
-              <p>{element.examen.nombre}</p>
+              <p>{element.examene.nombre}</p>
               <p>{element.examen.caso}</p>
               <p>{element.fechaCreacion}</p>
               <p>{element.pendiente == 0 ? "Pendiente" : "Completado"}</p>
