@@ -29,7 +29,7 @@
     text-align: center;
 }
 .seguimientoList-element>div{
-    height: 50px;
+    height: 40px;
     color: white;
     display: flex;
     align-items: center;
@@ -37,14 +37,17 @@
     flex:1;
     background-color: #218C74;
     cursor: pointer;
+    border-style: solid;
 }
 .seguimientoList-element>p{
     flex:1;
 }
 .seguimientoList-element>img{
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
+    padding: 10px;
     flex:1;
+    cursor: pointer;
 }
 .buscador-input{
     background: url('../../../Assets/Icons/search.svg') no-repeat scroll 8px 7px;

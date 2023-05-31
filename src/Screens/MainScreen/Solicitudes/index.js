@@ -8,6 +8,7 @@ import { useFetchData } from "../../../Hooks/fetchHook"
 export const Solicitudes = () => {
     const {setScreen,setItemId} = useContext(NavigationContext)
     const [data, loading] = useFetchData('examenes/solicitud');
+    console.log(data)
 
     const handleClick = (id) => {
         setItemId(id)
@@ -41,7 +42,7 @@ export const Solicitudes = () => {
                 <div className="divisor"></div>
                 <p>Estatus</p>
                 <div className="divisor"></div>
-                <p>Descargar / Rellenar </p>
+                <p>Opciones</p>
             </div>
 
             <div className="seguimientoList">
@@ -50,7 +51,7 @@ export const Solicitudes = () => {
                     return (
                         <div key={index} className="seguimientoList-element">
                             <p>{element.usuario.nombres} {element.usuario.apellidos}</p>
-                            <p>{element.examene.nombre}</p>
+                            <p>{element.examen.nombre}</p>
                             <p>{element.examen.caso}</p>
                             <p>{element.fechaCreacion}</p>
                             <p>{element.pendiente==0 ? 'Pendiente' : 'Completado'}</p>
