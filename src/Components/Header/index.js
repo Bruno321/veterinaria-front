@@ -65,7 +65,7 @@ export const Header = () => {
             </div>
           </>
         ) : null}
-
+        {/* <p className="userName">Jorge Josue Alvarez Martinez</p> */}
         <div className="header-logo-container" onClick={logOut}>
           <FontAwesomeIcon
             icon={faArrowRightFromBracket}
@@ -75,7 +75,6 @@ export const Header = () => {
           />
           <p className={"headerText"}>Cerrar sesión</p>
         </div>
-        <p className="userName">Jorge Josue Alvarez Martinez</p>
       </section>
     </header>
   );

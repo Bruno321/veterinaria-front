@@ -7,7 +7,6 @@ import { useFetchData } from "../../../Hooks/fetchHook";
 
 export const SeguimientoExamenes = () => {
   const [data, loading] = useFetchData("examenes/solicitud?isUser=true");
-  console.log(data)
 
   return (
     <div className="seguimientoContainer">
@@ -28,8 +27,6 @@ export const SeguimientoExamenes = () => {
       <div className="seguimientoList-header">
         <p>Examen</p>
         <div className="divisor"></div>
-        <p>Expediente</p>
-        <div className="divisor"></div>
         <p>Nombre</p>
         <div className="divisor"></div>
         <p>Fecha</p>
@@ -44,14 +41,14 @@ export const SeguimientoExamenes = () => {
           return (
             <div key={index} className="seguimientoList-element">
               <p>{element.examen.nombre}</p>
-              <p>{element.examen.expediente}</p>
               <p>{element.examen.caso}</p>
               <p>{element.fechaCreacion}</p>
               <p>{element.pendiente == 0 ? "Pendiente" : "Completado"}</p>
               <img
                 className="img-pdf"
-                style={element.pendiente == 0 ? null : { cursor: "pointer" }}
+                style={element.pendiente == 0 ? {opacity: "50%"} : { cursor: "pointer" }}
                 src={element.pendiente == 0 ? iconNoEdit : iconPDF}
+                title={element.pendiente== 0 ? "Pendiente..." : "Descargar PDF"}
               />
             </div>
           );

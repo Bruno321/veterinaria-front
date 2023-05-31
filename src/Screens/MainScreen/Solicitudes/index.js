@@ -36,7 +36,7 @@ export const Solicitudes = () => {
                 <div className="divisor"></div>
                 <p>Examen</p>
                 <div className="divisor"></div>
-                <p>Expediente</p>
+                <p>Caso</p>
                 <div className="divisor"></div>
                 <p>Fecha</p>
                 <div className="divisor"></div>
@@ -50,8 +50,8 @@ export const Solicitudes = () => {
                     // 0 pendeinte, 1 completado
                     return (
                         <div key={index} className="seguimientoList-element">
-                            <p>{element.usuario.nombres} {element.usuario.apellidos}</p>
-                            <p>{element.examen.nombre}</p>
+                            <p>{element.usuario.nombres + element.usuario.apellidos}</p>
+                            <p>{element.examene.nombre}</p>
                             <p>{element.examen.caso}</p>
                             <p>{element.fechaCreacion}</p>
                             <p>{element.pendiente==0 ? 'Pendiente' : 'Completado'}</p>
