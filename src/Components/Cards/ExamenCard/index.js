@@ -1,16 +1,18 @@
-import React from "react"
+import React, { useContext } from "react"
 import './index.css'
 import Swal from "sweetalert2"
 import { SAVE,process } from "../../../Services/Api"
 import imgCard from "../../../Assets/Imgs/pet-care.svg";
+import { NavigationContext } from "../../../Context/NavigationContext";
 
-export const ExamenCard = ({data}) => {
+export const ExamenCard = ({nombre, idValue}) => {
+    const { screen, setScreen } = useContext(NavigationContext);
 
-    const handleClick =  (id) => {
+    const handleClick =  () => {
 
         Swal.fire({
             // Que significara NR
-            title:`Formulario para el examen de ${data.nombre}`,
+            title:`Formulario para el examen de ${nombre}`,
             showCancelButton:true,
             confirmButtonColor:'green',
             confirmButtonText:'Solicitar',
@@ -68,7 +70,7 @@ export const ExamenCard = ({data}) => {
                 }
                 const data = {
                     solicitudData:{
-                        exameneId:id
+                        exameneId:1
                     },
                     examenData:{
                         nombreAnimal,
@@ -81,6 +83,7 @@ export const ExamenCard = ({data}) => {
                 try {
                     const response = await process(SAVE,'examenes/solicitud',data)
                     Swal.fire('Exito', response.data, 'success')
+                    setScreen(idValue)
                 } catch(e){
                     console.log(e.response)
                     Swal.fire('Error', '', 'error')
@@ -91,8 +94,9 @@ export const ExamenCard = ({data}) => {
     return (
         <div className="examenCard-container">
             <img src={imgCard}/>
-            <h1 className = "title-card-name">{data.nombre}</h1>
-            <button onClick={()=>handleClick(data.id)}>SOLICITAR EXAMEN</button>
+            <h1 className = "title-card-name">{nombre}</h1>
+            {/* <button onClick={()=>handleClick(data.id)}>SOLICITAR EXAMEN</button> */}
+            <button onClick={()=>handleClick()}>SOLICITAR EXAMEN</button>
         </div>
     )
 }

@@ -6,17 +6,14 @@ import { useFetchData } from "../../../Hooks/fetchHook"
 export const SolicitarExamen = () => {
 
     const [data, loading] = useFetchData('examenes');
-
     
     return (
         <div>
             <div className="solicitarExamen-gridContainer">
                 <div className="solicitarExamen-grid">
-                    {data.map((e,i)=> {
-                        return (
-                            <ExamenCard key={i} data={e}/>
-                        )
-                    })}
+                <ExamenCard nombre={"Hemograma"} idValue={4}/>
+                <ExamenCard nombre={"Parásitos"} idValue={5}/>
+                <ExamenCard nombre={"Urianálisis"} idValue={6}/>
                 </div>
             </div>
         </div>
