@@ -1,4 +1,5 @@
-import React from "react"
+import React, {useContext} from "react"
+import {NavigationContext} from "../../../Context/NavigationContext"
 import './index.css'
 
 const  data = [
@@ -60,7 +61,7 @@ const  data = [
     },
 ]
 export const Hemograma = () => {
-    
+    const {setScreen} = useContext(NavigationContext)
 
     const handlePotencia = (texto,potencia) => {
         let splited = texto.split('/')
@@ -291,6 +292,11 @@ export const Hemograma = () => {
                             <input style={{width:'100%'}} placeholder="Interpretación"/>
                         </div>
                     </div>
-            </div>
+
+                    <div style={{display:"flex", justifyContent:"space-evenly", marginBottom:"30px"}}>
+                        <button className="goback-button" onClick={()=>setScreen(2)}>Regresar</button>
+                        <button className="upload-button">Registrar resultados</button>
+                    </div>
+        </div>
     )
 }

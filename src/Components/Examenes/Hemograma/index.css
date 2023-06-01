@@ -57,3 +57,17 @@
     width: 100%;
     height: 100%;
 }
+.goback-button{
+    width: 15%;
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border-style: none;
+}
+.upload-button{
+    width: 15%;
+    background-color: #218C74;
+    color: white;
+    padding: 10px;
+    border-style: none;
+}

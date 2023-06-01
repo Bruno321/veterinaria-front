@@ -34,14 +34,9 @@ export const LlenarSolicitud = () => {
         <div className="seguimientoContainer">
             {loading ? <>Loading</>: 
                 <>
-                    <h2 className="h2-Resultados">Resultados:</h2>
+                    <h2 className="h2-Resultados">Registrar resultados de {informacionGeneral.examene.nombre}:</h2><br/>
             <FormGeneral data={informacionGeneral} setInformacionGeneral={setInformacionGeneral}/>
             {examenes[informacionGeneral.exameneId - 1]}
-            <div className="btn-container">
-                <div className="upload-button">
-                    Subir resultados
-                </div>
-            </div>
                 </>
             }
             

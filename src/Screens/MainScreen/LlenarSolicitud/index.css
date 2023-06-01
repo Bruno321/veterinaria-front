@@ -1,11 +1,3 @@
-.upload-button{
-    width: 20%;
-    background-color: #218C74;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    cursor: pointer;
-}
 .btn-container{
     width: 100%;
     display: flex;

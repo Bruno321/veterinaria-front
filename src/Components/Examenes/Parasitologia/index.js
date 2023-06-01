@@ -1,7 +1,9 @@
-import React from "react"
+import React, {useContext} from "react"
+import {NavigationContext} from "../../../Context/NavigationContext"
 import './index.css'
 
 export const Parasitologia = () => {
+    const {setScreen} = useContext(NavigationContext)
   
     return (
         <div>
@@ -43,6 +45,11 @@ export const Parasitologia = () => {
                 <div style={{width:'40%'}} className="horizontal-container">
                     <input style={{width:'100%'}} placeholder="Observaciones"/>
                 </div>
+            </div>
+
+            <div style={{display:"flex", justifyContent:"space-evenly", marginBottom:"30px"}}>
+                <button className="goback-button" onClick={()=>setScreen(2)}>Regresar</button>
+                <button className="upload-button">Registrar resultados</button>
             </div>
         </div>
     )
