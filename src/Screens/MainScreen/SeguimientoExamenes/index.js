@@ -4,6 +4,7 @@ import filtro from "../../../Assets/Icons/filtro.svg";
 import iconPDF from "../../../Assets/Icons/pdf_clickeable.svg";
 import iconNoEdit from "../../../Assets/Icons/pdf_no_clickeable.svg";
 import { useFetchData } from "../../../Hooks/fetchHook";
+import moment from "moment/moment";
 
 export const SeguimientoExamenes = () => {
   const [data, loading] = useFetchData("examenes/solicitud?isUser=true");
@@ -27,7 +28,7 @@ export const SeguimientoExamenes = () => {
       <div className="seguimientoList-header">
         <p>Examen</p>
         <div className="divisor"></div>
-        <p>Nombre</p>
+        <p>Caso</p>
         <div className="divisor"></div>
         <p>Fecha</p>
         <div className="divisor"></div>
@@ -41,8 +42,8 @@ export const SeguimientoExamenes = () => {
           return (
             <div key={index} className="seguimientoList-element">
               <p>{element.examene.nombre}</p>
-              <p>{element.examen.caso}</p>
-              <p>{element.fechaCreacion}</p>
+              <p>{element.examen.caso ? element.examen.caso : ""}</p>
+              <p>{moment(element.fechaCreacion).format('DD/MM/YYYY')} </p>
               <p>{element.pendiente == 0 ? "Pendiente" : "Completado"}</p>
               <img
                 className="img-pdf"

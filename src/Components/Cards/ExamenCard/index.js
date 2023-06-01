@@ -31,22 +31,22 @@ export const ExamenCard = ({nombre, idValue}) => {
                 <div>
                     <label>Edad:</label>
                     <input id="edad" placeholder="Edad"/>
-                </div>
+                </div><br/>
                 <div>
                     <div>
                         <label>¿Esta castrado?</label>
                         <input id="castrado" type="checkbox"/>
                     </div>
+                </div><br/>
+                <div>
+                    <label>Sexo: </label>
                     <div>
-                        <label>Sexo: </label>
-                        <div>
-                            <label>Macho</label>
-                            <input id="sexo" type="checkbox"/>
-                        </div>
-                        <div>
-                            <label>Hembra</label>
-                            <input type="checkbox"/>
-                        </div>
+                        <label>Macho</label>
+                        <input id="sexo" type="checkbox"/>
+                    </div>
+                    <div>
+                        <label>Hembra</label>
+                        <input type="checkbox"/>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,6 @@ export const ExamenCard = ({nombre, idValue}) => {
                 const edadAnimal = document.getElementById("edad").value
                 const estaCastradoSelect = document.getElementById("castrado").checked
                 const sexoSelect = document.getElementById("sexo").checked
-                console.log(estaCastrado,sexo)
                 let estaCastrado = 0
                 let sexo = 0
                 if(estaCastradoSelect){
@@ -70,7 +69,7 @@ export const ExamenCard = ({nombre, idValue}) => {
                 }
                 const data = {
                     solicitudData:{
-                        exameneId:1
+                        exameneId:idValue
                     },
                     examenData:{
                         nombreAnimal,
@@ -82,8 +81,7 @@ export const ExamenCard = ({nombre, idValue}) => {
                 }
                 try {
                     const response = await process(SAVE,'examenes/solicitud',data)
-                    Swal.fire('Exito', response.data, 'success')
-                    setScreen(idValue)
+                    Swal.fire('Solicitado con éxito', response.data, 'success')
                 } catch(e){
                     console.log(e.response)
                     Swal.fire('Error', '', 'error')
@@ -95,7 +93,6 @@ export const ExamenCard = ({nombre, idValue}) => {
         <div className="examenCard-container">
             <img src={imgCard}/>
             <h1 className = "title-card-name">{nombre}</h1>
-            {/* <button onClick={()=>handleClick(data.id)}>SOLICITAR EXAMEN</button> */}
             <button onClick={()=>handleClick()}>SOLICITAR EXAMEN</button>
         </div>
     )

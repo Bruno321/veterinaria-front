@@ -11,9 +11,9 @@ export const SolicitarExamen = () => {
         <div>
             <div className="solicitarExamen-gridContainer">
                 <div className="solicitarExamen-grid">
-                <ExamenCard nombre={"Hemograma"} idValue={4}/>
-                <ExamenCard nombre={"Parásitos"} idValue={5}/>
-                <ExamenCard nombre={"Urianálisis"} idValue={6}/>
+                <ExamenCard nombre={"Hemograma"} idValue={1}/>
+                <ExamenCard nombre={"Parásitos"} idValue={2}/>
+                <ExamenCard nombre={"Urianálisis"} idValue={3}/>
                 </div>
             </div>
         </div>
