@@ -8,7 +8,6 @@ import { useFetchData } from "../../../Hooks/fetchHook"
 export const Solicitudes = () => {
     const {setScreen,setItemId} = useContext(NavigationContext)
     const [data, loading] = useFetchData('examenes/solicitud');
-    console.log(data)
 
     const handleClick = (id) => {
         setItemId(id)
@@ -56,7 +55,7 @@ export const Solicitudes = () => {
                             <p>{element.fechaCreacion}</p>
                             <p>{element.pendiente==0 ? 'Pendiente' : 'Completado'}</p>
                             {element.pendiente==0 ? 
-                                <div onClick={()=>handleClick(element.id)}>
+                                <div onClick={()=>handleClick(element.examenId)}>
                                     Llenar expediente
                                 </div>
                             :

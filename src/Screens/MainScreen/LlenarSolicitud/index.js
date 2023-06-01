@@ -18,7 +18,7 @@ export const LlenarSolicitud = () => {
             setInformacionGeneral(response.data);
             setLoading(false)
         } else {
-            console.log('Error', `No se pudo consultar hacia ${path}`);
+            console.log('Error', `No se pudo consultar`);
         }
     }
 
@@ -36,7 +36,7 @@ export const LlenarSolicitud = () => {
                 <>
                     <h2 className="h2-Resultados">Resultados:</h2>
             <FormGeneral data={informacionGeneral} setInformacionGeneral={setInformacionGeneral}/>
-            {examenes[informacionGeneral.examenId]}
+            {examenes[informacionGeneral.exameneId - 1]}
             <div className="btn-container">
                 <div className="upload-button">
                     Subir resultados
