@@ -18,8 +18,6 @@ export const Parasitologia = ({idValue}) => {
     const {setScreen} = useContext(NavigationContext)
 
     const [informacionGeneral,setInformacionGeneral] = useState({})
-    const [loading,setLoading] = useState(true)
-
     const [informacionEspecifica, setInformacionEspecifica] =useState(oInfoEsp)
 
     //Obtener infoGeneral mediante fetch
@@ -28,7 +26,6 @@ export const Parasitologia = ({idValue}) => {
         if (response?.data) {
             setInformacionGeneral(response.data);
             setInformacionEspecifica({...informacionEspecifica,examenId:idValue})
-            setLoading(false)
         } else {
             console.log('Error', `No se pudo consultar`);
         }

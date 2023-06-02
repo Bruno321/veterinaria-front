@@ -28,9 +28,9 @@ export const LlenarSolicitud = () => {
     },[])
 
     const examenes = [
-        <Hemograma />,
+        <Hemograma idValue={itemId} />,
         <Parasitologia idValue={itemId}/>,
-        <UriAnalisis />
+        <UriAnalisis idValue={itemId}/>
     ]
     
     return (

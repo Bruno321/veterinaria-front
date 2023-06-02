@@ -1,6 +1,10 @@
-import React, {useContext} from "react"
+import React, {useContext, useState, useEffect} from "react"
 import {NavigationContext} from "../../../Context/NavigationContext"
+import { SAVE, FIND,process } from "../../../Services/Api"
+import Swal from "sweetalert2"
+
 import './index.css'
+
 
 const  data = [
     {
@@ -60,8 +64,77 @@ const  data = [
         potencia:''
     },
 ]
-export const Hemograma = () => {
+
+const oInfoEsp = {
+    Hematrocito:'',
+    Hemoglobina:'',
+    Eritrocitos:'',
+    VGM:'',
+    CGMH:'',
+    Reticulocitos:'',
+    Plaquetas:'',
+    SolidosTotales:'',
+    LeucocitosTotales:'',
+    Neutrófilos:'',
+    Bandas:'',
+    Linfocitos:'',
+    Monocitos:'',
+    Eosinófilos:'',
+    Basofilos:'',
+    HematrocitoVar:'',
+    HemoglobinaVar:'',
+    EritrocitosVar:'',
+    VGMVar:'',
+    CGMHVar:'',
+    ReticulocitosVar:'',
+    PlaquetasVar:'',
+    SolidosTotalesVar:'',
+    Leucocitos_TotalesVar:'',
+    NeutrófilosVar:'',
+    BandasVar:'',
+    LinfocitosVar:'',
+    MonocitosVar:'',
+    EosinófilosVar:'',
+    BasofilosVar:'',
+    Anisocitosis:'',
+    Policromasia:'',
+    PBasofilico:'',
+    Hipocromía:'',
+    Aglutinación:'',
+    Rouleaux:'',
+    Metarrubricitos:'',
+    Poiquilocitosis:'',
+    Tipo:'',
+    NeutrofilosToxicos:'',
+    LinfocitosReactivos:'',
+    MieloInmaduros:'',
+    Microfilarias:'',
+    Macroplaquetas:'',
+    Artefactos:'',
+    interpretacion:'',
+    examenId:0
+}
+
+export const Hemograma = ({idValue}) => {
     const {setScreen} = useContext(NavigationContext)
+
+    const [informacionGeneral,setInformacionGeneral] = useState({})
+    const [informacionEspecifica, setInformacionEspecifica]= useState(oInfoEsp)
+
+    //obtener información general mediante un fetch
+    const getData = async () => {
+        const response = await process(FIND, `examenes/hecho/${idValue}`, {}, {});
+        if (response?.data) {
+            setInformacionGeneral(response.data);
+            setInformacionEspecifica({...informacionEspecifica,examenId:idValue})
+        } else {
+            console.log('Error', `No se pudo consultar`);
+        }
+    }
+
+    useEffect(()=>{
+        getData()
+    },[])
 
     const handlePotencia = (texto,potencia) => {
         let splited = texto.split('/')
@@ -72,6 +145,25 @@ export const Hemograma = () => {
                 /{splited[1]}
             </p>
         )
+    }
+    
+    //Funcion handle submit
+    const handleSubmit = async () => {
+        const dataToSend = {
+            tipo:'hemograma',
+            id:idValue,
+            informacionGeneral:informacionGeneral,
+            informacionEspecifica: informacionEspecifica
+        }
+
+        //Mandamos el form
+        try {
+            const response = await process(SAVE,'examenes/',dataToSend)
+            Swal.fire('Registro de resultados exitoso', 'success').then(setScreen(2))
+        } catch(e){
+            console.log(e.response)
+            Swal.fire('Error', '', 'error')
+        }
     }
     return (
         <div className="form-container">
@@ -122,8 +214,8 @@ export const Hemograma = () => {
 
                             <div className="vertical-container">
                                 <p style={{textAlign:'left',width:'25%'}}>Leucocitos Totales</p>
-                                <input style={{width:'20%',padding:'8px'}} placeholder="Valor"/>
-                                <select style={{width:'20%',padding:'8px'}} name="select">
+                                <input style={{width:'20%',padding:'8px'}} placeholder="Valor" onChange={e => setInformacionEspecifica({...informacionEspecifica,LeucocitosTotales:e.target.value})}/>
+                                <select style={{width:'20%',padding:'8px'}} name="select" onChange={e => setInformacionEspecifica({...informacionEspecifica,Leucocitos_TotalesVar:e.target.value})}>
                                     <option value="nuevo" >-</option>
                                     <option value="nuevo" >Alto</option>
                                     <option value="viejo" >Bajo</option>
@@ -139,8 +231,8 @@ export const Hemograma = () => {
 
                             <div style={{justifyContent:'space-evenly'}} className="vertical-container">
                                 <p style={{textAlign:'left',width:'25%'}}>Neutrófilos</p>
-                                <input style={{width:'20%',padding:'8px'}} placeholder="Valor"/>
-                                <select style={{width:'20%',padding:'8px'}} name="select">
+                                <input style={{width:'20%',padding:'8px'}} placeholder="Valor" onChange={e => setInformacionEspecifica({...informacionEspecifica,Neutrófilos:e.target.value})}/>
+                                <select style={{width:'20%',padding:'8px'}} name="select" onChange={e => setInformacionEspecifica({...informacionEspecifica,NeutrófilosVar:e.target.value})}>
                                     <option value="nuevo" >-</option>
                                     <option value="nuevo" >Alto</option>
                                     <option value="viejo" >Bajo</option>
@@ -295,7 +387,7 @@ export const Hemograma = () => {
 
                     <div style={{display:"flex", justifyContent:"space-evenly", marginBottom:"30px"}}>
                         <button className="goback-button" onClick={()=>setScreen(2)}>Regresar</button>
-                        <button className="upload-button">Registrar resultados</button>
+                        <button className="upload-button" onClick={()=>handleSubmit()}>Registrar resultados</button>
                     </div>
         </div>
     )
