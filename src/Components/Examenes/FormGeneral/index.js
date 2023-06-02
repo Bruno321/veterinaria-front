@@ -2,6 +2,10 @@ import React from "react"
 import './index.css'
 
 export const FormGeneral = ({data,setInformacionGeneral}) => {
+
+    const examenes = [
+        "", "-HG-", "-Para-", "-UA-"
+    ]
   
     const handleInput = (key,value) => {
         setInformacionGeneral({...data,[key]:value})
@@ -19,7 +23,7 @@ export const FormGeneral = ({data,setInformacionGeneral}) => {
                     </div>
                     {/* TODO si ya existe el propietario se puede autocompletar */}
                     <div className="horizontal-container">
-                        <input readOnly={true} value={data.examen.caso} className="large-input" placeholder="Ingrese la dirección del propietario"/>
+                        <input readOnly={true} value={data.examen.id + `${examenes[data.examene.id]}`} className="large-input" placeholder="Ingrese el caso"/>
                         <input readOnly={true} value={data.usuario.nombres + ' ' + data.usuario.apellidos} className="large-input" placeholder="Ingrese el nombre del propietario"/>
                         <input readOnly={true} value={data.usuario.direccion} className="large-input" placeholder="Ingrese la dirección del propietario"/>
                         <input readOnly={true} value={data.usuario.telefono} className="large-input" placeholder="Ingrese el teléfono del propietario"/>

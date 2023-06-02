@@ -28,7 +28,7 @@ export const SeguimientoExamenes = () => {
       <div className="seguimientoList-header">
         <p>Examen</p>
         <div className="divisor"></div>
-        <p>Caso</p>
+        <p>Mascota</p>
         <div className="divisor"></div>
         <p>Fecha</p>
         <div className="divisor"></div>
@@ -42,9 +42,9 @@ export const SeguimientoExamenes = () => {
           return (
             <div key={index} className="seguimientoList-element">
               <p>{element.examene.nombre}</p>
-              <p>{element.examen.caso ? element.examen.caso : ""}</p>
+              <p>{element.examen.nombreAnimal}</p>
               <p>{moment(element.fechaCreacion).format('DD/MM/YYYY')} </p>
-              <p>{element.pendiente == 0 ? "Pendiente" : "Completado"}</p>
+              {element.pendiente == 0 ? <p style={{opacity:"0.5"}}><i>Pendiente</i></p> : <p>Completado</p>}
               <img
                 className="img-pdf"
                 style={element.pendiente == 0 ? {opacity: "50%"} : { cursor: "pointer" }}

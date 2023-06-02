@@ -12,6 +12,7 @@ export const LlenarSolicitud = () => {
 
     const [informacionGeneral,setInformacionGeneral] = useState({})
     const [loading,setLoading] = useState(true)
+
     const getData = async () => {
         const response = await process(FIND, `examenes/hecho/${itemId}`, {}, {});
         if (response?.data) {
@@ -25,11 +26,13 @@ export const LlenarSolicitud = () => {
     useEffect(()=>{
         getData()
     },[])
+
     const examenes = [
         <Hemograma />,
-        <Parasitologia />,
+        <Parasitologia idValue={itemId}/>,
         <UriAnalisis />
     ]
+    
     return (
         <div className="seguimientoContainer">
             {loading ? <>Loading</>: 

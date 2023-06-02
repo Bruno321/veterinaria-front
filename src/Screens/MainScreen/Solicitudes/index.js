@@ -2,7 +2,10 @@ import React,{useContext} from "react"
 import iconPDF from '../../../Assets/Icons/pdf_clickeable.svg'
 import filtro from '../../../Assets/Icons/filtro.svg'
 import { NavigationContext } from "../../../Context/NavigationContext"
+import moment from "moment/moment";
 import { useFetchData } from "../../../Hooks/fetchHook"
+
+import './index.css'
 
 
 export const Solicitudes = () => {
@@ -35,8 +38,6 @@ export const Solicitudes = () => {
                 <div className="divisor"></div>
                 <p>Examen</p>
                 <div className="divisor"></div>
-                <p>Caso</p>
-                <div className="divisor"></div>
                 <p>Fecha</p>
                 <div className="divisor"></div>
                 <p>Estatus</p>
@@ -51,11 +52,10 @@ export const Solicitudes = () => {
                         <div key={index} className="seguimientoList-element">
                             <p>{element.usuario.nombres + element.usuario.apellidos}</p>
                             <p>{element.examene.nombre}</p>
-                            <p>{element.examen.caso}</p>
-                            <p>{element.fechaCreacion}</p>
+                            <p>{moment(element.fechaCreacion).format('DD/MM/YYYY')}</p>
                             <p>{element.pendiente==0 ? 'Pendiente' : 'Completado'}</p>
                             {element.pendiente==0 ? 
-                                <div onClick={()=>handleClick(element.examenId)}>
+                                <div className="llenar-button" onClick={()=>handleClick(element.examenId)}>
                                     Llenar expediente
                                 </div>
                             :
