@@ -25,7 +25,7 @@ const  data = [
         mesurando:'Eritrocitos',
         referencia:'5.5 - 8.5',
         unidades:'x10/L',
-        morfologiaCelular:'P. Basofílico',
+        morfologiaCelular:'PBasofilico',
         potencia:'12'
     },
     {
@@ -57,7 +57,7 @@ const  data = [
         potencia:'9'
     },
     {
-        mesurando:'Sólidos Totales',
+        mesurando:'SolidosTotales',
         referencia:'60 - 75',
         unidades:'g/L',
         morfologiaCelular:'Poiquilocitosis',
@@ -66,7 +66,7 @@ const  data = [
 ]
 
 const oInfoEsp = {
-    Hematrocito:'',
+    Hematocrito:'',
     Hemoglobina:'',
     Eritrocitos:'',
     VGM:'',
@@ -81,7 +81,7 @@ const oInfoEsp = {
     Monocitos:'',
     Eosinófilos:'',
     Basofilos:'',
-    HematrocitoVar:'',
+    HematocritoVar:'',
     HemoglobinaVar:'',
     EritrocitosVar:'',
     VGMVar:'',
@@ -146,6 +146,24 @@ export const Hemograma = ({idValue}) => {
             </p>
         )
     }
+
+    //Función que nos ayuda con el onChange del data.map
+    const handleChange = (index, event, t) => {
+        const updatedInformacionEspecifica = { ...informacionEspecifica };
+
+        if(t=="me"){
+            updatedInformacionEspecifica[data[index].mesurando] = event.target.value;
+            setInformacionEspecifica(updatedInformacionEspecifica);
+        }
+        if(t=="mor"){
+            updatedInformacionEspecifica[data[index].morfologiaCelular] = event.target.value;
+            setInformacionEspecifica(updatedInformacionEspecifica);
+        }
+        if(t=="in"){
+            updatedInformacionEspecifica[`${data[index].mesurando}Var`] = event.target.value;
+            setInformacionEspecifica(updatedInformacionEspecifica);
+        }
+    };
     
     //Funcion handle submit
     const handleSubmit = async () => {
@@ -159,7 +177,7 @@ export const Hemograma = ({idValue}) => {
         //Mandamos el form
         try {
             const response = await process(SAVE,'examenes/',dataToSend)
-            Swal.fire('Registro de resultados exitoso', 'success').then(setScreen(2))
+            Swal.fire('Registro de resultados exitoso', 'Hemograma registrado').then(setScreen(2))
         } catch(e){
             console.log(e.response)
             Swal.fire('Error', '', 'error')
@@ -180,12 +198,12 @@ export const Hemograma = ({idValue}) => {
                             <>
                                 <div className="vertical-container" key={i}>
                                     <p style={{textAlign:'left',width:'10%'}}>{data.mesurando}</p>
-                                    <input placeholder="Valor"/>
-                                    <select name="select">
-                                        <option value="nuevo" >-</option>
-                                        <option value="nuevo" >Alto</option>
-                                        <option value="viejo" >Bajo</option>
-                                        <option value="viejo" >NC</option>
+                                    <input placeholder="Valor" onChange={(e) => handleChange(i, e, "in")}/>
+                                    <select name="select" onChange={(e) => handleChange(i, e, "me")}>
+                                        <option value="-" >-</option>
+                                        <option value="Alto" >Alto</option>
+                                        <option value="Bajo" >Bajo</option>
+                                        <option value="NC" >NC</option>
                                     </select> 
                                     <p style={{width:'8%'}}>{data.referencia}</p>
                                     {
@@ -195,11 +213,11 @@ export const Hemograma = ({idValue}) => {
                                         <p style={{width:'8%'}}>{data.unidades}</p>
                                     }
                                     <p style={{width:'15%'}}>{data.morfologiaCelular}</p>
-                                    <select name="select" style={{width:'11%'}}>
-                                        <option value="nuevo" >-</option>
-                                        <option value="nuevo" >Alto</option>
-                                        <option value="viejo" >Bajo</option>
-                                        <option value="viejo" >NC</option>
+                                    <select name="select" style={{width:'11%'}} onChange={(e) => handleChange(i, e, "mor")}>
+                                        <option value="-" >-</option>
+                                        <option value="Alto" >Alto</option>
+                                        <option value="Bajo" >Bajo</option>
+                                        <option value="NC" >NC</option>
                                     </select> 
                                 </div>
                                 <div className="divisor-container">
@@ -216,10 +234,10 @@ export const Hemograma = ({idValue}) => {
                                 <p style={{textAlign:'left',width:'25%'}}>Leucocitos Totales</p>
                                 <input style={{width:'20%',padding:'8px'}} placeholder="Valor" onChange={e => setInformacionEspecifica({...informacionEspecifica,LeucocitosTotales:e.target.value})}/>
                                 <select style={{width:'20%',padding:'8px'}} name="select" onChange={e => setInformacionEspecifica({...informacionEspecifica,Leucocitos_TotalesVar:e.target.value})}>
-                                    <option value="nuevo" >-</option>
-                                    <option value="nuevo" >Alto</option>
-                                    <option value="viejo" >Bajo</option>
-                                    <option value="viejo" >NC</option>
+                                    <option value="-" >-</option>
+                                    <option value="Alto" >Alto</option>
+                                    <option value="Bajo" >Bajo</option>
+                                    <option value="NC" >NC</option>
                                 </select> 
                                 <p style={{width:'16%'}}>6.0 - 17.0</p>
                                 <p style={{width:'16%'}}>x10<sup>9</sup>/L</p>
@@ -233,10 +251,10 @@ export const Hemograma = ({idValue}) => {
                                 <p style={{textAlign:'left',width:'25%'}}>Neutrófilos</p>
                                 <input style={{width:'20%',padding:'8px'}} placeholder="Valor" onChange={e => setInformacionEspecifica({...informacionEspecifica,Neutrófilos:e.target.value})}/>
                                 <select style={{width:'20%',padding:'8px'}} name="select" onChange={e => setInformacionEspecifica({...informacionEspecifica,NeutrófilosVar:e.target.value})}>
-                                    <option value="nuevo" >-</option>
-                                    <option value="nuevo" >Alto</option>
-                                    <option value="viejo" >Bajo</option>
-                                    <option value="viejo" >NC</option>
+                                    <option value="-" >-</option>
+                                    <option value="Alto" >Alto</option>
+                                    <option value="Bajo" >Bajo</option>
+                                    <option value="NC" >NC</option>
                                 </select> 
                                 <p style={{width:'16%'}}>3.0 - 11.5</p>
                                 <p style={{width:'16%'}}>x10<sup>9</sup>/L</p>
@@ -249,12 +267,12 @@ export const Hemograma = ({idValue}) => {
 
                             <div style={{justifyContent:'space-evenly'}} className="vertical-container">
                                 <p style={{textAlign:'left',width:'25%'}}>Bandas</p>
-                                <input style={{width:'20%',padding:'8px'}} placeholder="Valor"/>
-                                <select style={{width:'20%',padding:'8px'}} name="select">
-                                    <option value="nuevo" >-</option>
-                                    <option value="nuevo" >Alto</option>
-                                    <option value="viejo" >Bajo</option>
-                                    <option value="viejo" >NC</option>
+                                <input style={{width:'20%',padding:'8px'}} placeholder="Valor" onChange={e => setInformacionEspecifica({...informacionEspecifica,BandasVar:e.target.value})}/>
+                                <select style={{width:'20%',padding:'8px'}} name="select" onChange={e => setInformacionEspecifica({...informacionEspecifica,Bandas:e.target.value})}>
+                                    <option value="-" >-</option>
+                                    <option value="Alto" >Alto</option>
+                                    <option value="Bajo" >Bajo</option>
+                                    <option value="NC" >NC</option>
                                 </select> 
                                 <p style={{width:'16%'}}>0 - 0.3</p>
                                 <p style={{width:'16%'}}>x10<sup>9</sup>/L</p>
@@ -266,27 +284,27 @@ export const Hemograma = ({idValue}) => {
                             
                         </div>
                         <div className="large-input-container">
-                            <textarea placeholder="Tipo"/>
+                            <textarea placeholder="Tipo" onChange={e => setInformacionEspecifica({...informacionEspecifica,Tipo:e.target.value})}/>
                         </div>
                     </div>
                     
                     <div className="vertical-container" >
                         <p style={{textAlign:'left',width:'10%'}}>Linfocitos</p>
-                        <input placeholder="Valor"/>
-                        <select name="select">
-                            <option value="nuevo" >-</option>
-                            <option value="nuevo" >Alto</option>
-                            <option value="viejo" >Bajo</option>
-                            <option value="viejo" >NC</option>
+                        <input placeholder="Valor" onChange={e => setInformacionEspecifica({...informacionEspecifica,LinfocitosVar:e.target.value})}/>
+                        <select name="select" onChange={e => setInformacionEspecifica({...informacionEspecifica,Linfocitos:e.target.value})}>
+                            <option value="-" >-</option>
+                            <option value="Alto" >Alto</option>
+                            <option value="Bajo" >Bajo</option>
+                            <option value="NC" >NC</option>
                         </select> 
                         <p style={{width:'8%'}}>1.0 - 4.8</p>
                         <p style={{width:'8%'}}>x10<sup>9</sup>/L</p>
                         <p style={{width:'15%'}}>Neutrófilos tóxicos</p>
-                        <select name="select" style={{width:'11%'}}>
-                            <option value="nuevo" >-</option>
-                            <option value="nuevo" >Alto</option>
-                            <option value="viejo" >Bajo</option>
-                            <option value="viejo" >NC</option>
+                        <select name="select" style={{width:'11%'}} onChange={e => setInformacionEspecifica({...informacionEspecifica,NeutrofilosToxicos:e.target.value})}>
+                            <option value="-" >-</option>
+                            <option value="Alto" >Alto</option>
+                            <option value="Bajo" >Bajo</option>
+                            <option value="NC" >NC</option>
                         </select> 
                     </div>
                     <div className="divisor-container">
@@ -295,21 +313,21 @@ export const Hemograma = ({idValue}) => {
 
                     <div className="vertical-container" >
                         <p style={{textAlign:'left',width:'10%'}}>Monocitos</p>
-                        <input placeholder="Valor"/>
-                        <select name="select">
-                            <option value="nuevo" >-</option>
-                            <option value="nuevo" >Alto</option>
-                            <option value="viejo" >Bajo</option>
-                            <option value="viejo" >NC</option>
+                        <input placeholder="Valor" onChange={e => setInformacionEspecifica({...informacionEspecifica,Monocitos:e.target.value})}/>
+                        <select name="select" onChange={e => setInformacionEspecifica({...informacionEspecifica,MonocitosVar:e.target.value})}>
+                            <option value="-" >-</option>
+                            <option value="Alto" >Alto</option>
+                            <option value="Bajo" >Bajo</option>
+                            <option value="NC" >NC</option>
                         </select> 
                         <p style={{width:'8%'}}>0 - 1.4</p>
                         <p style={{width:'8%'}}>x10<sup>9</sup>/L</p>
                         <p style={{width:'15%'}}>Linfocitos reactivos</p>
-                        <select name="select" style={{width:'11%'}}>
-                            <option value="nuevo" >-</option>
-                            <option value="nuevo" >Alto</option>
-                            <option value="viejo" >Bajo</option>
-                            <option value="viejo" >NC</option>
+                        <select name="select" style={{width:'11%'}} onChange={e => setInformacionEspecifica({...informacionEspecifica,LinfocitosReactivos:e.target.value})}>
+                            <option value="-" >-</option>
+                            <option value="Alto" >Alto</option>
+                            <option value="Bajo" >Bajo</option>
+                            <option value="NC" >NC</option>
                         </select> 
                     </div>
                     <div className="divisor-container">
@@ -318,21 +336,21 @@ export const Hemograma = ({idValue}) => {
                 
                     <div className="vertical-container" >
                         <p style={{textAlign:'left',width:'10%'}}>Eosinófilos</p>
-                        <input placeholder="Valor"/>
-                        <select name="select">
-                            <option value="nuevo" >-</option>
-                            <option value="nuevo" >Alto</option>
-                            <option value="viejo" >Bajo</option>
-                            <option value="viejo" >NC</option>
+                        <input placeholder="Valor" onChange={e => setInformacionEspecifica({...informacionEspecifica,EosinófilosVar:e.target.value})}/>
+                        <select name="select" onChange={e => setInformacionEspecifica({...informacionEspecifica,Eosinófilos:e.target.value})}>
+                            <option value="-" >-</option>
+                            <option value="Alto" >Alto</option>
+                            <option value="Bajo" >Bajo</option>
+                            <option value="NC" >NC</option>
                         </select> 
                         <p style={{width:'8%'}}>0 - 0.9</p>
                         <p style={{width:'8%'}}>x10<sup>9</sup>/L</p>
                         <p style={{width:'15%'}}>Mielo. Inmaduros</p>
-                        <select name="select" style={{width:'11%'}}>
-                            <option value="nuevo" >-</option>
-                            <option value="nuevo" >Alto</option>
-                            <option value="viejo" >Bajo</option>
-                            <option value="viejo" >NC</option>
+                        <select name="select" style={{width:'11%'}} onChange={e => setInformacionEspecifica({...informacionEspecifica,MieloInmaduros:e.target.value})}>
+                            <option value="-" >-</option>
+                            <option value="Alto" >Alto</option>
+                            <option value="Bajo" >Bajo</option>
+                            <option value="NC" >NC</option>
                         </select> 
                     </div>
                     <div className="divisor-container">
@@ -341,21 +359,21 @@ export const Hemograma = ({idValue}) => {
 
                     <div className="vertical-container" >
                         <p style={{textAlign:'left',width:'10%'}}>Basófilos</p>
-                        <input placeholder="Valor"/>
-                        <select name="select">
-                            <option value="nuevo" >-</option>
-                            <option value="nuevo" >Alto</option>
-                            <option value="viejo" >Bajo</option>
-                            <option value="viejo" >NC</option>
+                        <input placeholder="Valor" onChange={e => setInformacionEspecifica({...informacionEspecifica,BasofilosVar:e.target.value})}/>
+                        <select name="select" onChange={e => setInformacionEspecifica({...informacionEspecifica,Basofilos:e.target.value})}>
+                            <option value="-" >-</option>
+                            <option value="Alto" >Alto</option>
+                            <option value="Bajo" >Bajo</option>
+                            <option value="NC" >NC</option>
                         </select> 
                         <p style={{width:'8%'}}>Raros</p>
                         <p style={{width:'8%'}}>x10<sup>9</sup>/L</p>
                         <p style={{width:'15%'}}>Microfilarias</p>
-                        <select name="select" style={{width:'11%'}}>
-                            <option value="nuevo" >-</option>
-                            <option value="nuevo" >Alto</option>
-                            <option value="viejo" >Bajo</option>
-                            <option value="viejo" >NC</option>
+                        <select name="select" style={{width:'11%'}} onChange={e => setInformacionEspecifica({...informacionEspecifica,Microfilarias:e.target.value})}>
+                            <option value="-" >-</option>
+                            <option value="Alto" >Alto</option>
+                            <option value="Bajo" >Bajo</option>
+                            <option value="NC" >NC</option>
                         </select> 
                     </div>
                     <div className="divisor-container">
@@ -364,13 +382,13 @@ export const Hemograma = ({idValue}) => {
 
                     <div className="vertical-container" >
                         <p style={{textAlign:'left',width:'10%'}}>Artefactos</p>
-                        <input style={{width:'35%'}} placeholder="Ninguno"/>
+                        <input style={{width:'35%'}} placeholder="Ninguno" onChange={e => setInformacionEspecifica({...informacionEspecifica,Artefactos:e.target.value})}/>
                         <p style={{width:'15%'}}>Macroplaquetas</p>
-                        <select name="select" style={{width:'11%'}}>
-                            <option value="nuevo" >-</option>
-                            <option value="nuevo" >Alto</option>
-                            <option value="viejo" >Bajo</option>
-                            <option value="viejo" >NC</option>
+                        <select name="select" style={{width:'11%'}} onChange={e => setInformacionEspecifica({...informacionEspecifica,Macroplaquetas:e.target.value})}>
+                            <option value="-" >-</option>
+                            <option value="Alto" >Alto</option>
+                            <option value="Bajo" >Bajo</option>
+                            <option value="NC" >NC</option>
                         </select> 
                     </div>
                     <div className="divisor-container">
@@ -381,7 +399,7 @@ export const Hemograma = ({idValue}) => {
                             <p style={{width:'100%',height:'5vh', display:'flex',alignItems:'center'}}>Interpretación:</p>
                         </div>
                         <div style={{width:'40%'}} className="horizontal-container">
-                            <input style={{width:'100%'}} placeholder="Interpretación"/>
+                            <input style={{width:'100%'}} placeholder="Interpretación" onChange={e => setInformacionEspecifica({...informacionEspecifica,interpretacion:e.target.value})}/>
                         </div>
                     </div>
 

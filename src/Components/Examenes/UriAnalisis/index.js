@@ -74,7 +74,7 @@ export const UriAnalisis = ({idValue}) => {
         //Mandamos el form
         try {
             const response = await process(SAVE,'examenes/',dataToSend)
-            Swal.fire('Registro de resultados exitoso', 'success').then(setScreen(2))
+            Swal.fire('Registro de resultados exitoso', 'Urianálisis registrado').then(setScreen(2))
         } catch(e){
             console.log(e.response)
             Swal.fire('Error', '', 'error')

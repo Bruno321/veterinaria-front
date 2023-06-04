@@ -1,10 +1,10 @@
-import React, {useContext} from "react"
+import React, {useContext, useState, useEffect} from "react"
 import {NavigationContext} from "../../../Context/NavigationContext"
-import './index.css'
-import { useState } from "react"
-import { useEffect } from "react"
 import { SAVE, FIND,process } from "../../../Services/Api"
 import Swal from "sweetalert2"
+
+import './index.css'
+
 
 const oInfoEsp = {
     tipoMuestra:"",
@@ -47,7 +47,7 @@ export const Parasitologia = ({idValue}) => {
         //Mandamos el form
         try {
             const response = await process(SAVE,'examenes/',dataToSend)
-            Swal.fire('Registro de resultados exitoso', 'success').then(setScreen(2))
+            Swal.fire('Registro de resultados exitoso', 'Parasitología registrado').then(setScreen(2))
         } catch(e){
             console.log(e.response)
             Swal.fire('Error', '', 'error')
