@@ -9,6 +9,17 @@ import moment from "moment/moment";
 export const SeguimientoExamenes = () => {
   const [data, loading] = useFetchData("examenes/solicitud?isUser=true");
 
+  const generarPDF = async (id) => {
+    console.log(id);
+    const Link = document.getElementById(`pdf${id}`);
+    console.log(Link);
+
+    Link.href = `http://localhost:3000/api/pdf/${id}`;
+    // Link.setAttribute("download", "");
+    // Link.setAttribute("target", "_blank");
+    // Link.setAttribute("rel", "nopener noreferrer");
+  };
+
   return (
     <div className="seguimientoContainer">
       <div className="buscador">
@@ -43,14 +54,31 @@ export const SeguimientoExamenes = () => {
             <div key={index} className="seguimientoList-element">
               <p>{element.examene.nombre}</p>
               <p>{element.examen.nombreAnimal}</p>
-              <p>{moment(element.fechaCreacion).format('DD/MM/YYYY')} </p>
-              {element.pendiente == 0 ? <p style={{opacity:"0.5"}}><i>Pendiente</i></p> : <p>Completado</p>}
-              <img
-                className="img-pdf"
-                style={element.pendiente == 0 ? {opacity: "50%"} : { cursor: "pointer" }}
-                src={element.pendiente == 0 ? iconNoEdit : iconPDF}
-                title={element.pendiente== 0 ? "Pendiente..." : "Descargar PDF"}
-              />
+              <p>{moment(element.fechaCreacion).format("DD/MM/YYYY")} </p>
+              {element.pendiente == 0 ? (
+                <p style={{ opacity: "0.5" }}>
+                  <i>Pendiente</i>
+                </p>
+              ) : (
+                <p>Completado</p>
+              )}
+              <a id={`pdf${element.id}`} className="container-img-pdf">
+                <img
+                  className="img-pdf"
+                  style={
+                    element.pendiente == 0
+                      ? { opacity: "50%" }
+                      : { cursor: "pointer" }
+                  }
+                  src={element.pendiente == 0 ? iconNoEdit : iconPDF}
+                  title={
+                    element.pendiente == 0 ? "Pendiente..." : "Descargar PDF"
+                  }
+                  onClick={() => {
+                    element.pendiente == 0 ? {} : generarPDF(element.id);
+                  }}
+                />
+              </a>
             </div>
           );
         })}

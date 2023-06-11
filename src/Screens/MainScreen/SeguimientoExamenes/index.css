@@ -1,89 +1,92 @@
 .seguimientoContainer {
-    padding:3vw;
-    background-color:#EEEEEE;
+  padding: 3vw;
+  background-color: #eeeeee;
 }
-.seguimientoList-header{
-    display: flex;
-    background-color: white;
-    height: 6vh;
-    color: gray;
-    font-size: 1rem;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-top: 20px;
+.seguimientoList-header {
+  display: flex;
+  background-color: white;
+  height: 6vh;
+  color: gray;
+  font-size: 1rem;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 20px;
 }
-.divisor{
-    height: 2vh;
-    width: 2px;
-    background-color: gray;
+.divisor {
+  height: 2vh;
+  width: 2px;
+  background-color: gray;
 }
-.seguimientoList{
-    background-color: white;
-    margin-top: 20px;
-    height: 60vh;
+.seguimientoList {
+  background-color: white;
+  margin-top: 20px;
+  height: 60vh;
 }
-.seguimientoList-element{
-    display: flex;
-    align-items: center;
-    text-align: center;
+.seguimientoList-element {
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
-.seguimientoList-element>div{
-    height: 40px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex:1;
-    background-color: #218C74;
-    border-style: solid;
-    cursor: pointer;
+.seguimientoList-element > div {
+  height: 40px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  background-color: #218c74;
+  border-style: solid;
+  cursor: pointer;
 }
-.seguimientoList-element>p{
-    flex:1;
+.seguimientoList-element > p {
+  flex: 1;
 }
-.seguimientoList-element>img{
-    width: 30px;
-    height: 30px;
-    padding: 10px;
-    flex:1;
+.seguimientoList-element > img {
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+  flex: 1;
 }
-.buscador-input{
-    background: url('../../../Assets/Icons/search.svg') no-repeat scroll 8px 7px;
-    background-size: 30px;
-    padding-left: 70px;
-    border: 0;
-    font-size: 1.3rem;
-    outline: none;
-    width: 70%;
+.buscador-input {
+  background: url("../../../Assets/Icons/search.svg") no-repeat scroll 8px 7px;
+  background-size: 30px;
+  padding-left: 70px;
+  border: 0;
+  font-size: 1.3rem;
+  outline: none;
+  width: 70%;
 }
-.buscador{
-    background-color: white;
-    display: flex;
-    height: 7vh;
-    color: gray;
+.buscador {
+  background-color: white;
+  display: flex;
+  height: 7vh;
+  color: gray;
 }
-.buscador-filtro{
-    display: flex;
-    align-items: center;
-    font-size: 1.4rem;
-    justify-content: space-evenly;
-    width: 10%;
+.buscador-filtro {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  justify-content: space-evenly;
+  width: 10%;
 }
-.select-buscador{
-    display: flex;
-    align-items: center;
-    width: 15%;
-    justify-content: center;
+.select-buscador {
+  display: flex;
+  align-items: center;
+  width: 15%;
+  justify-content: center;
 }
-.select-buscador>select{
-    font-size: 1.2rem;
-    border: 0;
-    border-bottom: 1px solid gray;
-    width: 90%;
-    outline: none;
-    background-color: transparent;
+.select-buscador > select {
+  font-size: 1.2rem;
+  border: 0;
+  border-bottom: 1px solid gray;
+  width: 90%;
+  outline: none;
+  background-color: transparent;
 }
-
-.img-pdf{
-    width: 250px;
+.container-img-pdf {
+  flex: 1.2;
+}
+.img-pdf {
+  width: 34px;
+  padding: 10px 0px;
 }
